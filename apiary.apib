@@ -1,0 +1,219 @@
+FORMAT: 1A
+HOST: https://1000-builder.au-syd.mybluemix.net/
+
+# gEHR API
+
+gEHR API is a simple API allowing client to upconvert simple JSON to MML 4.0.
+
+## MML upconversion [/mml]
+
+
+### upconvert a simple json to MML [POST]
+
+You may create your own json formatted MML instance and answers MML instance.
+
++ Request (application/json)
+
+        {
+            "contentType": "Medication",
+            "medication": [
+                {
+                    "issuedTo": "external",
+                    "medicine": "マーズレン S 顆粒",
+                    "medicineCode": "612320261",
+                    "medicineCodeSystem": "YJ",
+                    "dose": 1,
+                    "doseUnit": "g",
+                    "frequencyPerDay": 2,
+                    "startDate": "2016-10-05",
+                    "duration": "P30D",
+                    "instruction": "内服2回 朝夜食後に",
+                    "PRN": false,
+                    "brandSubstitutionPermitted": true,
+                    "longTerm": false
+                },
+                {
+                    "issuedTo": "external",
+                    "medicine": "メトリジン錠 2 mg",
+                    "medicineCode": "612160027",
+                    "medicineCodeSystem": "YJ",
+                    "dose": 2,
+                    "doseUnit": "錠",
+                    "frequencyPerDay": 2,
+                    "startDate": "2016-10-05",
+                    "duration": "P30D",
+                    "instruction": "内服2回 朝夜食後に",
+                    "PRN": false,
+                    "brandSubstitutionPermitted": false,
+                    "longTerm": true
+                }
+            ]
+        };
+
++ Response 201 (application/xml)
+
+             <?xml version="1.0" encoding="UTF-8"?>
+            <Mml version="4.0" createDate="28-10-05T11:23:26" xmlns="http://www.medxml.net/MML/v4/base/1.0" xmlns:mml="http://www.medxml.net/MML/v4/base/1.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mmlAd="http://www.medxml.net/MML/v4/SharedComponent/Address/1.0" xmlns:mmlPh="http://www.medxml.net/MML/v4/SharedComponent/Phone/1.0" xmlns:mmlCm="http://www.medxml.net/MML/v4/SharedComponent/Common/1.0" xmlns:mmlNm="http://www.medxml.net/MML/v4/SharedComponent/Name/1.0" xmlns:mmlFc="http://www.medxml.net/MML/v4/SharedComponent/Facility/1.0" xmlns:mmlDp="http://www.medxml.net/MML/v4/SharedComponent/Department/1.0" xmlns:mmlPsi="http://www.medxml.net/MML/v4/SharedComponent/PersonalizedInfo/1.0" xmlns:mmlCi="http://www.medxml.net/MML/v4/SharedComponent/CreatorInfo/1.0" xmlns:mmlSc="http://www.medxml.net/MML/v4/SharedComponent/Security/1.0" xmlns:mmlPi="http://www.medxml.net/MML/v4/ContentModule/PatientInfo/1.0" xmlns:mmlBc="http://www.medxml.net/MML/v4/ContentModule/BaseClinic/1.0" xmlns:mmlFcl="http://www.medxml.net/MML/v4/ContentModule/FirstClinic/1.0" xmlns:mmlHi="http://www.medxml.net/MML/v4/ContentModule/HealthInsurance/1.1" xmlns:mmlLs="http://www.medxml.net/MML/v4/ContentModule/Lifestyle/1.0" xmlns:mmlPc="http://www.medxml.net/MML/v4/ContentModule/ProgressCourse/1.0" xmlns:mmlRd="http://www.medxml.net/MML/v4/ContentModule/RegisteredDiagnosis/1.0" xmlns:mmlSg="http://www.medxml.net/MML/v4/ContentModule/Surgery/1.0" xmlns:mmlSm="http://www.medxml.net/MML/v4/ContentModule/Summary/1.0" xmlns:mmlLb="http://www.medxml.net/MML/v4/ContentModule/test/1.0" xmlns:mmlRp="http://www.medxml.net/MML/v4/ContentModule/report/1.0" xmlns:mmlRe="http://www.medxml.net/MML/v4/ContentModule/Referral/1.0" xmlns:mmlVs="http://www.medxml.net/MML/v4/ContentModule/VitalSign/1.0" xmlns:mmlFs="http://www.medxml.net/MML/v4/ContentModule/FlowSheet/1.0" xmlns:mmlPs="http://www.medxml.net/MML/v4/ContentModule/Prescription/1.0" xmlns:mmlInj="http://www.medxml.net/MML/v4/ContentModule/Injection/1.0" xmlns:mmlHd="http://www.medxml.net/MML/v4/ContentModule/Hemodialysis/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.medxml.net/MML/v4/base/1.0 ../schema/mml.xsd">
+                <MmlHeader>
+                    <mmlCi:CreatorInfo>
+                        <mmlPsi:PersonalizedInfo>
+                            <mmlCm:Id mmlCm:type="facility" mmlCm:tableId="JPN012345678901">201605</mmlCm:Id>
+                            <mmlPsi:personName>
+                                <mmlNm:Name mmlNm:repCode="I" mmlNm:tableId="MML0025">
+                                    <mmlNm:fullname>青山 慶二</mmlNm:fullname>
+                                    <mmlNm:prefix>Professor</mmlNm:prefix>
+                                    <mmlNm:degree>MD/PhD</mmlNm:degree>
+                                </mmlNm:Name>
+                            </mmlPsi:personName>
+                            <mmlFc:Facility>
+                                <mmlFc:name mmlFc:repCode="I" mmlFc:tableId="MML0025">シルク内科</mmlFc:name>
+                                <mmlCm:Id mmlCm:type="idType" mmlCm:tableId="MML0027">JPN012345678901</mmlCm:Id>
+                            </mmlFc:Facility>
+                            <mmlDp:Department>
+                                <mmlDp:name mmlDp:repCode="I" mmlDp:tableId="MML0025">第一内科</mmlDp:name>
+                                <mmlCm:Id mmlCm:type="medical" mmlCm:tableId="MML0029">01</mmlCm:Id>
+                            </mmlDp:Department>
+                            <mmlPsi:addresses>
+                                <mmlAd:Address mmlAd:repCode="I" mmlAd:addressClass="business" mmlAd:tableId="MML0025">
+                                    <mmlAd:full>横浜市中区山下町1番地 8-9-01</mmlAd:full>
+                                    <mmlAd:zip>231-0023</mmlAd:zip>
+                                </mmlAd:Address>
+                            </mmlPsi:addresses>
+                            <mmlPsi:phones>
+                                <mmlPh:Phone mmlPh:telEquipType="PH">
+                                    <mmlPh:full>045-571-6572</mmlPh:full>
+                                </mmlPh:Phone>
+                            </mmlPsi:phones>
+                        </mmlPsi:PersonalizedInfo>
+                        <mmlCi:creatorLicense mmlCi:tableId="MML0026">doctor</mmlCi:creatorLicense>
+                    </mmlCi:CreatorInfo>
+                    <masterId>
+                        <mmlCm:Id mmlCm:type="facility" mmlCm:tableId="JPN012345678901">0516</mmlCm:Id>
+                    </masterId>
+                    <toc>
+                        <tocItem>http://www.w3.org/1999/xhtml</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/SharedComponent/Common/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/SharedComponent/Name/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/SharedComponent/Facility/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/SharedComponent/Department/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/SharedComponent/Address/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/SharedComponent/Phone/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/SharedComponent/PersonalizedInfo/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/SharedComponent/CreatorInfo/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/SharedComponent/Security/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/ContentModule/PatientInfo/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/ContentModule/BaseClinic/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/ContentModule/FirstClinic/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/ContentModule/HealthInsurance/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/ContentModule/Lifestyle/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/ContentModule/ProgressCourse/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/ContentModule/RegisteredDiagnosis/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/ContentModule/Surgery/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/ContentModule/Summary/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/ContentModule/test/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/ContentModule/report/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/ContentModule/Referral/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/ContentModule/VitalSign/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/ContentModule/FlowSheet/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/ContentModule/Prescription/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/ContentModule/Injection/1.0</tocItem>
+                        <tocItem>http://www.medxml.net/MML/v4/ContentModule/Hemodialysis/1.0</tocItem>
+                    </toc>
+                </MmlHeader>
+                <MmlBody>
+                    <MmlModuleItem>
+                        <docInfo contentModuleType="prescription">
+                            <mmlSc:securityLevel>
+                                <mmlSc:accessRight permit="all">
+                                    <mmlSc:facility>
+                                        <mmlSc:facilityName mmlSc:facilityCode="creator">記載者施設</mmlSc:facilityName>
+                                    </mmlSc:facility>
+                                </mmlSc:accessRight>
+                                <mmlSc:accessRight permit="read">
+                                    <mmlSc:facility>
+                                        <mmlSc:facilityName mmlSc:facilityCode="experience">診療歴のある施設</mmlSc:facilityName>
+                                    </mmlSc:facility>
+                                    <mmlSc:person>
+                                        <mmlSc:personName mmlSc:personCode="patient" mmlSc:personId="0516" mmlSc:personIdType="dolphinUserId_2001-10-03">宮田 奈々</mmlSc:personName>
+                                    </mmlSc:person>
+                                </mmlSc:accessRight>
+                            </mmlSc:securityLevel>
+                            <title generationPurpose="record">prescription</title>
+                            <docId>
+                                <uid>b846195b-d0cf-4d09-b103-9cb832e6da9a</uid>
+                                <groupId groupClass="prescription">67528a54-2236-4635-b82a-13203bb60f3c</groupId>
+                            </docId>
+                            <confirmDate>2016-10-05T20:23:26</confirmDate>
+                            <mmlCi:CreatorInfo>
+                                <mmlPsi:PersonalizedInfo>
+                                    <mmlCm:Id mmlCm:type="facility" mmlCm:tableId="JPN012345678901">201605</mmlCm:Id>
+                                    <mmlPsi:personName>
+                                        <mmlNm:Name mmlNm:repCode="I" mmlNm:tableId="MML0025">
+                                            <mmlNm:fullname>青山 慶二</mmlNm:fullname>
+                                            <mmlNm:prefix>Professor</mmlNm:prefix>
+                                            <mmlNm:degree>MD/PhD</mmlNm:degree>
+                                        </mmlNm:Name>
+                                    </mmlPsi:personName>
+                                    <mmlFc:Facility>
+                                        <mmlFc:name mmlFc:repCode="I" mmlFc:tableId="MML0025">シルク内科</mmlFc:name>
+                                        <mmlCm:Id mmlCm:type="idType" mmlCm:tableId="MML0027">JPN012345678901</mmlCm:Id>
+                                    </mmlFc:Facility>
+                                    <mmlDp:Department>
+                                        <mmlDp:name mmlDp:repCode="I" mmlDp:tableId="MML0025">第一内科</mmlDp:name>
+                                        <mmlCm:Id mmlCm:type="medical" mmlCm:tableId="MML0029">01</mmlCm:Id>
+                                    </mmlDp:Department>
+                                    <mmlPsi:addresses>
+                                        <mmlAd:Address mmlAd:repCode="I" mmlAd:addressClass="business" mmlAd:tableId="MML0025">
+                                            <mmlAd:full>横浜市中区山下町1番地 8-9-01</mmlAd:full>
+                                            <mmlAd:zip>231-0023</mmlAd:zip>
+                                        </mmlAd:Address>
+                                    </mmlPsi:addresses>
+                                    <mmlPsi:phones>
+                                        <mmlPh:Phone mmlPh:telEquipType="PH">
+                                            <mmlPh:full>045-571-6572</mmlPh:full>
+                                        </mmlPh:Phone>
+                                    </mmlPsi:phones>
+                                </mmlPsi:PersonalizedInfo>
+                                <mmlCi:creatorLicense mmlCi:tableId="MML0026">doctor</mmlCi:creatorLicense>
+                            </mmlCi:CreatorInfo>
+                            <extRefs>
+                            </extRefs>
+                        </docInfo>
+                        <content>
+                            <mmlPs:PrescriptionModule>
+                                <mmlPs:issuedTo>external</mmlPs:issuedTo>
+                                <mmlPs:medication>
+                                    <mmlPs:medicine>
+                                        <mmlPs:name>マーズレン S 顆粒</mmlPs:name>
+                                        <mmlPs:code system="YJ">612320261</mmlPs:code>
+                                    </mmlPs:medicine>
+                                    <mmlPs:dose>1</mmlPs:dose>
+                                    <mmlPs:doseUnit>g</mmlPs:doseUnit>
+                                    <mmlPs:frequencyPerDay>2</mmlPs:frequencyPerDay>
+                                    <mmlPs:startDate>2016-10-05</mmlPs:startDate>
+                                    <mmlPs:duration>P30D</mmlPs:duration>
+                                    <mmlPs:instruction>内服2回 朝夜食後に</mmlPs:instruction>
+                                    <mmlPs:PRN>false</mmlPs:PRN>
+                                    <mmlPs:brandSubstitutionPermitted>true</mmlPs:brandSubstitutionPermitted>
+                                    <mmlPs:longTerm>false</mmlPs:longTerm>
+                                </mmlPs:medication>
+                                <mmlPs:medication>
+                                    <mmlPs:medicine>
+                                        <mmlPs:name>メトリジン錠 2 mg</mmlPs:name>
+                                        <mmlPs:code system="YJ">612160027</mmlPs:code>
+                                    </mmlPs:medicine>
+                                    <mmlPs:dose>2</mmlPs:dose>
+                                    <mmlPs:doseUnit>錠</mmlPs:doseUnit>
+                                    <mmlPs:frequencyPerDay>2</mmlPs:frequencyPerDay>
+                                    <mmlPs:startDate>2016-10-05</mmlPs:startDate>
+                                    <mmlPs:duration>P30D</mmlPs:duration>
+                                    <mmlPs:instruction>内服2回 朝夜食後に</mmlPs:instruction>
+                                    <mmlPs:PRN>false</mmlPs:PRN>
+                                    <mmlPs:brandSubstitutionPermitted>false</mmlPs:brandSubstitutionPermitted>
+                                    <mmlPs:longTerm>true</mmlPs:longTerm>
+                                </mmlPs:medication>
+                            </mmlPs:PrescriptionModule>
+                        </content>
+                    </MmlModuleItem>
+                </MmlBody>
+            </Mml>
